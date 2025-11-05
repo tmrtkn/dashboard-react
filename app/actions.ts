@@ -49,6 +49,10 @@ export async function readWeatherDataFromRedis(key: string): Promise<string> {
     }
 }
 
+export async function getWeatherKeys() {
+    return redis.scan(0, "MATCH", DataType.WEATHER + '*');
+}
+
 export async function writeToRedis(name: string): Promise<void> {
     try {
         console.log("Saving to Redis: ", name);
